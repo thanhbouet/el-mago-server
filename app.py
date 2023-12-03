@@ -239,7 +239,7 @@ def processImage(path):
     cmdExec = "python " + configuration.INFERENCE_TO_GFPGAN + " -i " + str(path) + " -o " + newpath + " -v 1.3 -s 2"
     os.system(cmdExec)
     
-    return os.path.join(newpath + "\\restored_imgs", oldname)
+    return os.path.join(newpath + "/restored_imgs", oldname)
 
 @app.route('/image', methods=['GET'])
 def get_image_with_url():
