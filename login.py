@@ -235,8 +235,8 @@ def register2():
 def processImage(path):
     oldname = pathlib.Path(path).name
     newpath = configuration.ENHANCE_FACE_RES_DIR
-
-    cmdExec = "python D:\hoctap\Python\GFPGAN\inference_gfpgan.py -i " + str(path) + " -o " + newpath + " -v 1.3 -s 2"
+    
+    cmdExec = "python " + configuration.INFERENCE_TO_GFPGAN + " -i " + str(path) + " -o " + newpath + " -v 1.3 -s 2"
     os.system(cmdExec)
     
     return os.path.join(newpath + "\\restored_imgs", oldname)
