@@ -15,4 +15,4 @@ ENHANCE_VIDEO_RES_DIR = DIR_PATH + "/video_enhance"
 ENHANCE_VIDEO_RESTORED_DIR = ENHANCE_VIDEO_RES_DIR + "/output" 
 ENHANCE_VIDEO_INPUT_DIR = ENHANCE_VIDEO_RES_DIR + "/input"
 
-INFERENCE_TO_GFPGAN = "/home/student/ddthanh0628/server/GFPGAN/interence_gfpgan.py"
+INFERENCE_TO_GFPGAN = "/home/student/ddthanh0628/server/GFPGAN/inference_gfpgan.py"
