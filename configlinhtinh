@@ -3,3 +3,9 @@ ip: 34.67.146.52
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+
+https://raw.githubusercontent.com/richzhang/colorization/caffe/colorization/resources/pts_in_hull.npy
+
+https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1&v=gAmskBNz_Vc
+
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbm5wbTN1a3RManJQUWF3NERDNUluNUo1bkR0UXxBQ3Jtc0ttVl9pSnZHRkFWeENaemxZZldmYzR5emx5NHRhaEVXWGg5elItSXpnSGpvRzlHWDhsYkdaWWNMc0l3UTJvbno1Sm9IelE1cF9TbEZGeXlBQm5QdmFwejZlS3lYS3BxMkpDYjcwaVptdjExZzctcXF3QQ&q=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fdx0qvhhp5hbcx7z%2Fcolorization_release_v2.caffemodel%3Fdl%3D1&v=gAmskBNz_Vc
