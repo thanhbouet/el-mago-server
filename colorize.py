@@ -3,8 +3,9 @@ import argparse
 import cv2
 import os
 import uuid
+import configuration
 
-DIR = r"D:\hoctap\Python\demo-flask\colorize"
+DIR = configuration.COLORIZE_RES_DIR
 PROTOTXT = os.path.join(DIR,r"model/colorization_deploy_v2.prototxt")
 POINTS = os.path.join(DIR,r"model/pts_in_hull.npy")
 MODEL = os.path.join(DIR,r"model/colorization_release_v2.caffemodel")
