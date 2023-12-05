@@ -5,10 +5,10 @@ import os
 import uuid
 import configuration
 
-DIR = configuration.COLORIZE_RES_DIR
-PROTOTXT = os.path.join(DIR,r"model/colorization_deploy_v2.prototxt")
-POINTS = os.path.join(DIR,r"model/pts_in_hull.npy")
-MODEL = os.path.join(DIR,r"model/colorization_release_v2.caffemodel")
+DIR = configuration.COLORIZE_MODEL_DIR
+PROTOTXT = os.path.join(DIR,'colorization_deploy_v2.prototxt')
+POINTS = os.path.join(DIR,'pts_in_hull.npy')
+MODEL = os.path.join(DIR,'colorization_release_v2.caffemodel')
 
 def colorizePhoto(input, output):
     print("Load model")
