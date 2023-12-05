@@ -6,7 +6,7 @@ import uuid
 import configuration
 
 DIR = configuration.COLORIZE_MODEL_DIR
-PROTOTXT = os.path.join(DIR,'colorization_deploy_v2.prototxt')
+PROTOTXT = os.path.join(DIR,'colorization_deploy_v2.prototxt.txt')
 POINTS = os.path.join(DIR,'pts_in_hull.npy')
 MODEL = os.path.join(DIR,'colorization_release_v2.caffemodel')
 
