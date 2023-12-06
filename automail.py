@@ -9,8 +9,8 @@ import os
 
 def connect():
     smtpO = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    smtpO.ehlo()
-    smtpO.starttls()
+    # smtpO.ehlo()
+    # smtpO.starttls()
     smtpO.login('dthanhuet@gmail.com','hxtjwwfvytngclpt')
     return smtpO
     
