@@ -14,6 +14,9 @@ from colorize import colorizePhoto
 import string
 import random
 import configuration
+import requests
+import threading
+
 
 app = Flask(__name__)
 
@@ -268,7 +271,7 @@ def get_image_with_url():
         else:
             return "Image not found"
     elif type == TYPE_VIDEO:
-        parent = configuration.ENHANCE_VIDEO_RES_DIR  
+        parent = configuration.ENHANCE_VIDEO_RESTORED_DIR  
         true_path = os.path.join(parent,name)
         if os.path.isfile(true_path):
             return send_file(true_path,mimetype='video/mp4')
@@ -292,6 +295,15 @@ def get_saved_images():
             return "Bad token"
     return "Unvailable"
 
+def downloadVideoURL(output, out_url):
+    response = requests.get(out_url)
+    if response.status_code == 200:
+        with open(output, 'wb') as file:
+            file.write(response.content)
+        print("Download Video Success")
+    else:
+        print("Download Failed")
+
 @app.route('/video&enhance.py', methods = ['GET','POST'])
 def enhance_video():
     if request.method == 'POST':
@@ -313,13 +325,17 @@ def enhance_video():
             out_file_name = str(uuid.uuid4()) + ".mp4"
             output = os.path.join(dir, out_file_name)
             
-            outfile = ven.enhanceVideo(input_path= path, output_path= output)
+            out_url = ven.enhanceVideo(input_path= path)
             
-            savedImage = SavedImage(file_name= out_file_name, username = t_username, type= TYPE_VIDEO, absolute_path= outfile)
+            thread = threading.Thread(target=downloadVideoURL, args=(output, out_url,))
+            thread.start()
+            
+            savedImage = SavedImage(file_name= out_file_name, username = t_username, type= TYPE_VIDEO, absolute_path= output)
             db.session.add(savedImage)
             db.session.commit()
             
-            return send_file(outfile, mimetype='video/mp4')
+            response1 = [{'result': 1, 'message': 'Success', 'video_url' : out_url}]
+            return make_response(jsonify(response1),200)
         else:
             return "Bad token"
 
@@ -399,7 +415,6 @@ def enhance_image():
             path = os.path.join(configuration.ENHANCE_FACE_RES_DIR, t_filename)
             t_file1.save(path)
             
-
             output_path = processImage(path)
             savedImage = SavedImage(file_name= t_filename, username = t_username, type= TYPE_ENHANCE, absolute_path= output_path)
             db.session.add(savedImage)
