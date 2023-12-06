@@ -143,6 +143,35 @@ def login():
     elif request.method == 'GET':
         return "Nothing here"
     
+GOOGLE_USER_SIGNATURE = "googleuser9haz"
+    
+@app.route('/loginwithgoogle', methods=['GET','POST'])    
+def loginGoogle():
+    if request.method == 'POST':
+        t_email = request.json['email']
+        t_fullname = request.json['fullname']
+        
+        user = User.query.filter_by(email = t_email).first()
+       
+        if user:
+            result = [{'result': 1,'username' : user.username,'email' : user.email,'fullname' : user.fullname, 'message': "Success", 'token' : usage_token}]    
+            return make_response(jsonify(result),200)
+        else:
+            t_username = GOOGLE_USER_SIGNATURE + generateVerifyCode()
+           
+            if validate_exist_username(t_username= t_username):
+                t_user = User(username=t_username,email=t_email,password="",fullname=t_fullname)
+                db.session.add(t_user)
+                db.session.commit()
+                code = 200
+                result = [{'result': 1,'username' : t_user.username,'email' : t_user.email,'fullname' : t_user.fullname, 'message': "Success", 'token' : usage_token}]    
+            else:
+                code = 201
+   
+            return make_response(jsonify(result),code)
+    elif request.method == 'GET':
+        return "Nothing here"
+    
 def sendRequestVerifyEmail(user : UnverifiedUser):
     target =[user.email]
     automail.send_email(target = target, msg = automail.buid_msg_content(text_message=user.verify_code))
@@ -467,6 +496,8 @@ def forgot_password():
         
     else:
         return "Nothing to get"
+    
+
                  
 @app.route('/register/verify', methods=['GET','POST'])
 def verify_email():
