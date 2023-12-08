@@ -8,10 +8,10 @@ import os
 
 
 def connect():
-    smtpO = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    # smtpO.ehlo()
-    # smtpO.starttls()
-    smtpO.login('dthanhuet@gmail.com','hxtjwwfvytngclpt')
+    smtpO = smtplib.SMTP('smtp.gmail.com', 587)
+    smtpO.ehlo()
+    smtpO.starttls()
+    smtpO.login('dinhthanhzula@gmail.com','bwvcodzyryherhvj')
     return smtpO
     
 
@@ -22,16 +22,16 @@ def buid_msg_content(subject="Verify El Mago Account", text_message = ""):
     
     return msg
     
-target = ["dinhthanhzula@gmail.com","obhnaht@gmail.com"]
+target = ["dthanhuet@gmail.com","obhnaht@gmail.com"]
 
 def send_email(target,msg):
     try:
         smtp.sendmail(from_addr="dthanhuet@gmail.com",
                   to_addrs=target, msg=msg.as_string())
     except Exception:
-        
-        smtp = connect()
-        send_email(target,msg)
+        pass
+        # smtp = connect()
+        # send_email(target,msg)
 
 def quit():
     smtp.quit()
