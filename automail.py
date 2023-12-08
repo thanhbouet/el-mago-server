@@ -30,7 +30,7 @@ def send_email(target,msg):
                   to_addrs=target, msg=msg.as_string())
     except Exception:
         
-        stmp = connect()
+        smtp = connect()
         send_email(target,msg)
 
 def quit():

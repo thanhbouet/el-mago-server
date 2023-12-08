@@ -117,7 +117,6 @@ with app.app_context():
 def listen_destroy_event():
     try:
         print("Destroyed")
-        automail.quit()
     except:
         pass
         
