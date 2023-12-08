@@ -25,11 +25,12 @@ def buid_msg_content(subject="Verify El Mago Account", text_message = ""):
 target = ["dthanhuet@gmail.com","obhnaht@gmail.com"]
 
 def send_email(target,msg):
-    try:
-        smtp.sendmail(from_addr="dthanhuet@gmail.com",
-                  to_addrs=target, msg=msg.as_string())
-    except Exception:
-        pass
+    pass
+    # try:
+    #     smtp.sendmail(from_addr="dthanhuet@gmail.com",
+    #               to_addrs=target, msg=msg.as_string())
+    # except Exception:
+        # pass
         # smtp = connect()
         # send_email(target,msg)
 
